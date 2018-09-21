@@ -2187,6 +2187,7 @@ static int xlnx_drm_hdmi_probe(struct platform_device *pdev)
 	XTmrCtr_ConfigTable[instance * 2 + 1].SysClockFreqHz = axi_clk_rate;
 	XV_HdmiTx_ConfigTable[instance].AxiLiteClkFreq = axi_clk_rate;
 
+#if 0
 	/* acquire Tmds clock for output resolution */
 	xhdmi->tmds_clk = devm_clk_get(&pdev->dev, "txref-clk");
 	if (IS_ERR(xhdmi->tmds_clk)) {
@@ -2204,6 +2205,7 @@ static int xlnx_drm_hdmi_probe(struct platform_device *pdev)
 		dev_err(&pdev->dev, "failed to enable tx clk\n");
 		return ret;
 	}
+#endif 
 
 	/* support to drive an external retimer IC on the TX path, depending on TX clock line rate */
 	xhdmi->retimer_clk = devm_clk_get(&pdev->dev, "retimer-clk");
