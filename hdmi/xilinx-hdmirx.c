@@ -1153,6 +1153,7 @@ static int xhdmi_compute_subcore_AbsAddr(XV_HdmiRxSs_Config *config)
 	}
 	XV_HdmiRx_ConfigTable[instance].BaseAddress = config->HdmiRx.AbsAddr;
 
+#if 0
 	/* Subcore: hdcp1x */
 	if (config->Hdcp14.IsPresent) {
 		ret = xhdmi_subcore_AbsAddr(config->BaseAddress,
@@ -1188,7 +1189,7 @@ static int xhdmi_compute_subcore_AbsAddr(XV_HdmiRxSs_Config *config)
 	  }
 	  XHdcp22_Rx_ConfigTable[instance].BaseAddress = config->Hdcp22.AbsAddr;
 	}
-
+#endif 
 	return (ret);
 }
 
