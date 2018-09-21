@@ -2205,7 +2205,6 @@ static int xlnx_drm_hdmi_probe(struct platform_device *pdev)
 		dev_err(&pdev->dev, "failed to enable tx clk\n");
 		return ret;
 	}
-#endif 
 
 	/* support to drive an external retimer IC on the TX path, depending on TX clock line rate */
 	xhdmi->retimer_clk = devm_clk_get(&pdev->dev, "retimer-clk");
@@ -2228,6 +2227,7 @@ static int xlnx_drm_hdmi_probe(struct platform_device *pdev)
 	} else {
 		dev_dbg(xhdmi->dev,"no retimer clk specified, assuming no redriver/retimer is used.\n");
 	}
+#endif 
 
 	/* get ownership of the HDCP1x key management MMIO register space resource */
 	if (xhdmi->config.Hdcp14.IsPresent) {
