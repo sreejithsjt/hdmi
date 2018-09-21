@@ -1319,6 +1319,7 @@ static int xhdmi_drm_compute_subcore_AbsAddr(XV_HdmiTxSs_Config *config)
 	printk("xhdmi_drm_compute_subcore_AbsAddr -----> Subcore: Vtc");
 	XVtc_ConfigTable[instance].BaseAddress = config->Vtc.AbsAddr;
 
+#if 0
 	/* Subcore: hdcp1x */
 	if (config->Hdcp14.IsPresent) {
 	  ret = xhdmi_drm_subcore_AbsAddr(config->BaseAddress,
@@ -1359,6 +1360,7 @@ static int xhdmi_drm_compute_subcore_AbsAddr(XV_HdmiTxSs_Config *config)
 	}
 	printk("xhdmi_drm_compute_subcore_AbsAddr -----> Subcore: hdcp22");
 
+#endif
 	return (ret);
 }
 
