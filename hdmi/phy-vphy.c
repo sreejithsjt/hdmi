@@ -506,8 +506,9 @@ static int xvphy_probe(struct platform_device *pdev)
 	XVphy_ConfigTable[instance].AxiLiteClkFreq = axi_lite_rate;
 	XVphy_ConfigTable[instance].DrpClkFreq = axi_lite_rate;
 
+#if 1
 	/* dru-clk is used for the nidru block for low res support */
-	/*vphydev->clkp = devm_clk_get(&pdev->dev, "dru-clk");
+	vphydev->clkp = devm_clk_get(&pdev->dev, "dru-clk");
 	if (IS_ERR(vphydev->clkp)) {
 		ret = PTR_ERR(vphydev->clkp);
 		vphydev->clkp = NULL;
@@ -523,6 +524,7 @@ static int xvphy_probe(struct platform_device *pdev)
 		dev_err(&pdev->dev, "failed to enable nidru clk\n");
 		return ret;
 	}
+#endif
 
 	dru_clk_rate = clk_get_rate(vphydev->clkp);
 	dev_dbg(vphydev->dev,"default dru-clk rate = %lu\n", dru_clk_rate);
@@ -533,14 +535,13 @@ static int xvphy_probe(struct platform_device *pdev)
 		}
 		dru_clk_rate = clk_get_rate(vphydev->clkp);
 		dev_dbg(vphydev->dev,"ref dru-clk rate = %lu\n", dru_clk_rate);
-	}*/
+	}
 
 	provider = devm_of_phy_provider_register(&pdev->dev, xvphy_xlate);
 	if (IS_ERR(provider)) {
 		dev_err(&pdev->dev, "registering provider failed\n");
 			return PTR_ERR(provider);
 	}
-
 
 	/* Initialize HDMI VPHY */
 	Status = XVphy_Hdmi_CfgInitialize(&vphydev->xvphy, 0/*QuadID*/,

@@ -1304,8 +1304,6 @@ static int xhdmi_drm_compute_subcore_AbsAddr(XV_HdmiTxSs_Config *config)
 	   return -EFAULT;
 	}
 
-	printk("xhdmi_drm_compute_subcore_AbsAddr -----> Subcore: Tx");
-	
 	XV_HdmiTx_ConfigTable[instance].BaseAddress = config->HdmiTx.AbsAddr;
 
 	/* Subcore: Vtc */
@@ -1316,7 +1314,6 @@ static int xhdmi_drm_compute_subcore_AbsAddr(XV_HdmiTxSs_Config *config)
 	if (ret != XST_SUCCESS) {
 	   return -EFAULT;
 	}
-	printk("xhdmi_drm_compute_subcore_AbsAddr -----> Subcore: Vtc");
 	XVtc_ConfigTable[instance].BaseAddress = config->Vtc.AbsAddr;
 
 #if 0
@@ -1331,7 +1328,6 @@ static int xhdmi_drm_compute_subcore_AbsAddr(XV_HdmiTxSs_Config *config)
 	  }
 	  XHdcp1x_ConfigTable[instance].BaseAddress = config->Hdcp14.AbsAddr;
 	}
-	printk("xhdmi_drm_compute_subcore_AbsAddr -----> Subcore: hdcp1x");
 
 	/* Subcore: hdcp1x timer */
 	if (config->HdcpTimer.IsPresent) {
@@ -1344,7 +1340,6 @@ static int xhdmi_drm_compute_subcore_AbsAddr(XV_HdmiTxSs_Config *config)
 	  }
 	  XTmrCtr_ConfigTable[instance * 2 + 0].BaseAddress = config->HdcpTimer.AbsAddr;
 	}
-	printk("xhdmi_drm_compute_subcore_AbsAddr -----> Subcore: hdcp1x timer");
 
 	/* Subcore: hdcp22 */
 	if (config->Hdcp22.IsPresent) {
@@ -1358,7 +1353,6 @@ static int xhdmi_drm_compute_subcore_AbsAddr(XV_HdmiTxSs_Config *config)
 	  }
 	  XHdcp22_Tx_ConfigTable[instance].BaseAddress = config->Hdcp22.AbsAddr;
 	}
-	printk("xhdmi_drm_compute_subcore_AbsAddr -----> Subcore: hdcp22");
 
 #endif
 	return (ret);
