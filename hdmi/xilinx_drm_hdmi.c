@@ -2181,7 +2181,7 @@ static int xlnx_drm_hdmi_probe(struct platform_device *pdev)
 	XTmrCtr_ConfigTable[instance * 2 + 1].SysClockFreqHz = axi_clk_rate;
 	XV_HdmiTx_ConfigTable[instance].AxiLiteClkFreq = axi_clk_rate;
 
-#if 1
+#if 0
 	/* acquire Tmds clock for output resolution */
 	xhdmi->tmds_clk = devm_clk_get(&pdev->dev, "txref-clk");
 	if (IS_ERR(xhdmi->tmds_clk)) {
