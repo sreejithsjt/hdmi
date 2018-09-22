@@ -506,7 +506,7 @@ static int xvphy_probe(struct platform_device *pdev)
 	XVphy_ConfigTable[instance].AxiLiteClkFreq = axi_lite_rate;
 	XVphy_ConfigTable[instance].DrpClkFreq = axi_lite_rate;
 
-#if 0
+#if 1
 	/* dru-clk is used for the nidru block for low res support */
 	vphydev->clkp = devm_clk_get(&pdev->dev, "dru-clk");
 	if (IS_ERR(vphydev->clkp)) {
