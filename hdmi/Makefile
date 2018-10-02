@@ -1,5 +1,5 @@
 # build 3 modules: vphy hdmi-rx and hdmi-tx
-obj-m += xilinx-vphy.o xilinx-hdmi-rx.o xilinx-hdmi-tx.o
+obj-m += xilinx-vphy.o xilinx-hdmi-rx.o xilinx-hdmi-tx.o xilinx-hdmi-tx-new.o
 
 # in same cases only used to check against presence, i.e. >0, actual number is not used
 ccflags-y := -DXPAR_XVPHY_NUM_INSTANCES=4
@@ -46,6 +46,7 @@ xilinx-hdmi-rx-objs += xilinx-hdmi-rx/xv_hdmirxss_log.o
 xilinx-hdmi-rx-objs += xilinx-hdmi-rx/xv_hdmirxss_coreinit.o
 xilinx-hdmi-rx-objs += xilinx-hdmi-rx/xv_hdmirxss_hdcp.o
 
+
 # DRM (HDMI TX)
 xilinx-hdmi-tx-objs := xilinx_drm_hdmi.o
 
@@ -63,6 +64,24 @@ xilinx-hdmi-tx-objs += xilinx-hdmi-tx/xv_hdmitxss_hdcp.o
 xilinx-hdmi-tx-objs += xilinx-hdmi-tx/xvtc.o
 xilinx-hdmi-tx-objs += xilinx-hdmi-tx/xvtc_intr.o
 xilinx-hdmi-tx-objs += xilinx-hdmi-tx/xvtc_sinit.o
+
+# DRM (HDMI TX NEW)
+xilinx-hdmi-tx-new-objs := xilinx_drm_hdmi-new.o
+
+# the C API around the IP registers
+CFLAGS_xilinx_drm_hdmi-new.o += -I$(src)/xilinx-hdmi-tx-new/
+CFLAGS_xilinx_drm_hdmi-new.o += -I$(src)/include/ -Idrivers/gpu/drm/xilinx/
+
+xilinx-hdmi-tx-new-objs += xilinx-hdmi-tx-new/xv_hdmitx.o
+xilinx-hdmi-tx-new-objs += xilinx-hdmi-tx-new/xv_hdmitx_sinit.o
+xilinx-hdmi-tx-new-objs += xilinx-hdmi-tx-new/xv_hdmitx_intr.o
+xilinx-hdmi-tx-new-objs += xilinx-hdmi-tx-new/xv_hdmitxss.o
+xilinx-hdmi-tx-new-objs += xilinx-hdmi-tx-new/xv_hdmitxss_log.o
+xilinx-hdmi-tx-new-objs += xilinx-hdmi-tx-new/xv_hdmitxss_coreinit.o
+xilinx-hdmi-tx-new-objs += xilinx-hdmi-tx-new/xv_hdmitxss_hdcp.o
+xilinx-hdmi-tx-new-objs += xilinx-hdmi-tx-new/xvtc.o
+xilinx-hdmi-tx-new-objs += xilinx-hdmi-tx-new/xvtc_intr.o
+xilinx-hdmi-tx-new-objs += xilinx-hdmi-tx-new/xvtc_sinit.o
 
 
 # PHY (HDMI RX/TX)
